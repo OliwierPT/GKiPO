@@ -1,0 +1,11 @@
+pyproject.toml
+src/GKiPO/__main__.py
+src/GKiPO/core.py
+src/GKiPO/exercise1.py
+src/GKiPO.egg-info/PKG-INFO
+src/GKiPO.egg-info/SOURCES.txt
+src/GKiPO.egg-info/dependency_links.txt
+src/GKiPO.egg-info/entry_points.txt
+src/GKiPO.egg-info/requires.txt
+src/GKiPO.egg-info/top_level.txt
+tests/test_core.py

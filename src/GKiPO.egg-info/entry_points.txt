@@ -1,0 +1,2 @@
+[console_scripts]
+my-cli = GKiPO.__main__:main
