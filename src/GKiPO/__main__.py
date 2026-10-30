@@ -31,7 +31,7 @@ def parse_arguments() -> argparse.Namespace:
         "--input",
         type=Path,
         default=Path(
-            "exercise1.py"
+            "exercise2.py"
         ),  # Now optional, defaults to this path #required=True,
         help="Path to the input file or directory.",
     )
