@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import io
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageOps
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
@@ -111,3 +111,44 @@ results = evaluate_image_quality(img_np)
 print("Image Quality Assessment:")
 for key, value in results.items():
   print(f" - {key.replace('_', ' ').title()}: {value}")
+
+# 4. Improve image quality
+def enhance_image_quality(img):
+  """Improves image quality using contrast stretching, sharpness,
+
+  and color adjustments.
+  """
+  # 1. Automatic Contrast Stretching
+  # Stretches the pixel intensity distribution to use the full dynamic range
+  enhanced = ImageOps.autocontrast(img, cutoff=2)
+
+  # 2. Edge Sharpening
+  # Enhances clarity by defining edges more clearly (factor > 1.0)
+  sharpness_enhancer = ImageEnhance.Sharpness(enhanced)
+  sharpened = sharpness_enhancer.enhance(1.5)
+
+  # 3. Color Saturation Adjustment
+  # Boosts color vibrancy slightly for a more vivid look (factor > 1.0)
+  color_enhancer = ImageEnhance.Color(sharpened)
+  final_image = color_enhancer.enhance(1.2)
+
+  return final_image
+
+# Apply the enhancement algorithm
+improved_image = enhance_image_quality(image)
+
+# 5. Display both images side-by-side in a matplotlib plot
+fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+
+# Plot Original Image
+axes[0].imshow(image)
+axes[0].set_title("Original Image", fontsize=14, fontweight="bold")
+axes[0].axis("off")
+
+# Plot Enhanced Image
+axes[1].imshow(improved_image)
+axes[1].set_title("Enhanced Image", fontsize=14, fontweight="bold")
+axes[1].axis("off")
+
+plt.tight_layout()
+plt.show()
